@@ -31,8 +31,7 @@ export REACT_APP_MESSAGING_SENDER_ID=236168090156
 if [ "$CIRCLE_BRANCH" == "master" ]; then
    export REACT_APP_API_URL=https://api-art.andela.com/api/v1/
 fi
-echo $EACT_APP_API_URL
-yarn build
+echo $EACT_APP_API_URL "here"
 
 authorize_docker() {
     echo "====> Store Sand authenticate with service account"
