@@ -60,6 +60,9 @@ jobs:
       - checkout 
       - setup_remote_docker:
           version: 17.11.0-ce
+      - *restore_cache
+      - *install_dependencies
+      - *save_cache     
       - *build_artifacts    
       - run:
           name: deploying application to production 
