@@ -74,10 +74,5 @@ workflows:
           filters:
             branches:
               only: develop
-      - deploy_production:
-          requires:
-            - tests 
-          filters:
-            branches:
-              only: master          
-              
+      - deploy_production
+          
