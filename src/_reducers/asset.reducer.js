@@ -1,26 +1,35 @@
 import constants from '../_constants';
+import initialState from './initialState';
 
-const { LOAD_ASSET_TYPE_SUCCESS, LOAD_ASSET_TYPE_FAILURE } = constants;
+const {
+  LOADING_ASSET,
+  LOAD_ASSET_FAILURE,
+  LOAD_ASSET_SUCCESS
+} = constants;
 
-const initialState = {
-  assetTypes: [],
-  assetTypesCount: 0, 
-};
-
-export default (state = initialState, action) => {
+export default (state = initialState.asset, action) => {
   switch (action.type) {
-    case LOAD_ASSET_TYPE_SUCCESS:
+    case LOADING_ASSET:
       return {
         ...state,
-        assetTypes: [...action.payload.data],
-        assetTypesCount: action.payload.headers['x-total-count'],
-      }
-    case LOAD_ASSET_TYPE_FAILURE:
+        isLoading: true
+      };
+    case LOAD_ASSET_SUCCESS:
       return {
         ...state,
-        assetTypes: [],
-      }
+        assetDetail: action.payload,
+        hasError: false,
+        isLoading: false
+      };
+    case LOAD_ASSET_FAILURE:
+      return {
+        ...state,
+        assetDetail: {},
+        errorMessage: action.payload,
+        hasError: true,
+        isLoading: false
+      };
     default:
       return state;
   }
-}
+};
