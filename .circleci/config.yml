@@ -9,6 +9,10 @@ install_dependencies: &install_dependencies
   run:
     name: install dependencies
     command: yarn install
+run_build: &build_artifacts
+  run:
+    name: running yarn build
+    command: yarn build
 save_cache: &save_cache 
   save_cache:
     key: dependency-cache-{{ checksum "package.json" }}
@@ -56,6 +60,7 @@ jobs:
       - checkout 
       - setup_remote_docker:
           version: 17.11.0-ce
+      - *build_artifacts    
       - run:
           name: deploying application to production 
           command: |
