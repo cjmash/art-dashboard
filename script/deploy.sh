@@ -20,14 +20,18 @@ require 'GOOGLE_PROJECT_ID' $GOOGLE_PROJECT_ID
 require 'DOCKER_REGISTRY' $DOCKER_REGISTRY
 require 'GCLOUD_SERVICE_KEY' $GCLOUD_SERVICE_KEY
 
-export REACT_APP_API_URL=$REACT_APP_API_URL
-export REACT_APP_FIREBASE_KEY=$REACT_APP_FIREBASE_KEY
-export REACT_APP_AUTH_DOMAIN=$REACT_APP_AUTH_DOMAIN
-export REACT_APP_DATABASE_URL=$REACT_APP_DATABASE_URL
-export REACT_APP_PROJECT_ID=$REACT_APP_PROJECT_ID
-export REACT_APP_STORAGE_BUCKET=$REACT_APP_STORAGE_BUCKET
-export REACT_APP_MESSAGING_SENDER_ID=$REACT_APP_MESSAGING_SENDER_ID
+export REACT_APP_API_URL=https://api-staging-art.andela.com/api/v1/
+export REACT_APP_FIREBASE_KEY=AIzaSyAJCRcTGOgHcr53wWQU4RtRWp7yQlUEevM
+export REACT_APP_AUTH_DOMAIN=andela-resource-tracker.firebaseapp.com
+export REACT_APP_DATABASE_URL=andela-resource-tracker.firebaseio.com
+export REACT_APP_PROJECT_ID=andela-resource-tracker
+export REACT_APP_STORAGE_BUCKET=andela-resource-tracker.appspot.com
+export REACT_APP_MESSAGING_SENDER_ID=236168090156
 
+if [ "$CIRCLE_BRANCH" == "master" ]; then
+   export REACT_APP_API_URL=https://api-art.andela.com/api/v1/
+fi
+echo $EACT_APP_API_URL
 yarn build
 
 authorize_docker() {
