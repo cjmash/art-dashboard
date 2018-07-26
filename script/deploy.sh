@@ -33,6 +33,8 @@ if [ "$CIRCLE_BRANCH" == "master" ]; then
 fi
 echo $EACT_APP_API_URL "here"
 
+yarn build
+
 authorize_docker() {
     echo "====> Store Sand authenticate with service account"
     echo $GCLOUD_SERVICE_KEY | base64 --decode > ${HOME}/gcloud-service-key.json
